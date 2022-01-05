@@ -1,8 +1,7 @@
 import React, { useEffect } from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, Button } from 'react-native';
 
-export const HomeScreen = () => {
-
+export const HomeScreen = ({ navigation }: any) => {
   useEffect(() => {
     console.log('HomeScreen render!');
   }, []);
@@ -10,6 +9,7 @@ export const HomeScreen = () => {
   return (
     <View>
       <Text>Home screen</Text>
+      <Button title={'Navegar'} onPress={() => navigation.navigate('Detail')} />
     </View>
   );
 };
