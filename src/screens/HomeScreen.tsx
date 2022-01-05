@@ -1,9 +1,12 @@
 import React, { useEffect } from 'react';
 import { View, Text, Button } from 'react-native';
+import movieDB from '../api/movieDB';
 
-export const HomeScreen = ({ navigation }: any) => {
+export const HomeScreen: React.FC = ({ navigation }: any) => {
   useEffect(() => {
-    console.log('HomeScreen render!');
+    movieDB.get('/now_playing').then(data => {
+      console.log(data);
+    });
   }, []);
 
   return (
