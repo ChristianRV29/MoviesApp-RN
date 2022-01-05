@@ -1,6 +1,8 @@
+import 'react-native-gesture-handler';
 import React, { useEffect } from 'react';
-import { Text } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
+
+import { Navigation } from './src/navigation/Navigation';
 
 const App = () => {
   useEffect(() => {
@@ -9,7 +11,7 @@ const App = () => {
 
   return (
     <NavigationContainer>
-        <Text>Hello world!</Text>
+      <Navigation />
     </NavigationContainer>
   );
 };

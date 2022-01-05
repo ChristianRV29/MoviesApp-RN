@@ -1,0 +1,18 @@
+import React from 'react';
+import { createStackNavigator } from '@react-navigation/stack';
+
+import { HomeScreen } from './../screens/HomeScreen';
+import DetailScreen from './../screens/DetailScreen';
+
+const Stack = createStackNavigator();
+
+const { Navigator, Screen } = Stack;
+
+export const Navigation = () => {
+  return (
+    <Navigator>
+      <Screen name={'Home'} component={HomeScreen} />
+      <Screen name={'Detail'} component={DetailScreen} />
+    </Navigator>
+  );
+};
