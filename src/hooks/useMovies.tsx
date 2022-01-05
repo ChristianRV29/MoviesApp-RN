@@ -4,6 +4,7 @@ import { MovieDBInterface, Movie } from './../interfaces/movie';
 import movieDB from './../api/movieDB';
 
 export const useMovies = () => {
+  const [isLoading, setIsLoading] = useState<boolean>(true);
   const [movies, setMovies] = useState<Movie[]>([]);
 
   const getMovies = async () => {
@@ -17,12 +18,13 @@ export const useMovies = () => {
       })
       .catch(err =>
         console.log('An error has been ocurred: ' + (err.message || err.error)),
-      );
+      )
+      .finally(() => setIsLoading(false));
   };
 
   useEffect(() => {
     getMovies();
   }, []);
 
-  return { movies };
+  return { movies, isLoading };
 };
