@@ -25,7 +25,8 @@ const styles = StyleSheet.create({
     height: 420,
   },
   card: {
-    elevation: 5,
+    borderRadius: 18,
+    elevation: 10,
     flex: 1,
     shadowColor: '#000',
     shadowOffset: {
@@ -33,7 +34,7 @@ const styles = StyleSheet.create({
       height: 2,
     },
     shadowOpacity: 0.25,
-    shadowRadius: 3.84,
+    shadowRadius: 4,
   },
   image: {
     flex: 1,
