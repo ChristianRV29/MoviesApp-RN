@@ -1,9 +1,12 @@
 import React from 'react';
-import { View, Text, Button, ActivityIndicator } from 'react-native';
+import { View, ActivityIndicator, Dimensions } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import Carousel from 'react-native-snap-carousel';
 
 import MovieCard from '../components/MovieCard';
 import { useMovies } from '../hooks/useMovies';
+
+const { width: windowWidth } = Dimensions.get('window');
 
 export const HomeScreen: React.FC = ({ navigation }: any) => {
   const { movies, isLoading } = useMovies();
@@ -21,9 +24,14 @@ export const HomeScreen: React.FC = ({ navigation }: any) => {
 
   return (
     <View style={{ marginTop: top }}>
-      <Text>Home screen</Text>
-      <MovieCard movie={movies[0]} />
-      <Button title={'Navegar'} onPress={() => navigation.navigate('Detail')} />
+      <View style={{ height: 440 }}>
+        <Carousel
+          data={movies}
+          renderItem={({ item }: any) => <MovieCard movie={item} />}
+          sliderWidth={windowWidth}
+          itemWidth={300}
+        />
+      </View>
     </View>
   );
 };
