@@ -1,6 +1,7 @@
 import { StackScreenProps } from '@react-navigation/stack';
 import React from 'react';
 import { View, ActivityIndicator, Dimensions } from 'react-native';
+import { ScrollView } from 'react-native-gesture-handler';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Carousel from 'react-native-snap-carousel';
 import { HorizontalSlider } from '../components/HorizontalSlider';
@@ -28,16 +29,21 @@ export const HomeScreen = ({ route, navigation }: Props) => {
   }
 
   return (
-    <View style={{ marginTop: top + 20 }}>
-      <View style={{ height: 440 }}>
-        <Carousel
-          data={movies}
-          renderItem={({ item }: any) => <MovieCard movie={item} />}
-          sliderWidth={windowWidth}
-          itemWidth={300}
-        />
+    <ScrollView>
+      <View style={{ marginTop: top + 20, backgroundColor: 'white' }}>
+        <View style={{ height: 440 }}>
+          <Carousel
+            data={movies}
+            renderItem={({ item }: any) => <MovieCard movie={item} />}
+            sliderWidth={windowWidth}
+            itemWidth={300}
+            inactiveSlideOpacity={0.9}
+          />
+        </View>
+        <HorizontalSlider movies={movies} title={'In cinema'} />
+        <HorizontalSlider movies={movies} title={'In cinema'} />
+        <HorizontalSlider movies={movies} title={'In cinema'} />
       </View>
-      <HorizontalSlider movies={movies} title={'In cinema'} />
-    </View>
+    </ScrollView>
   );
 };
