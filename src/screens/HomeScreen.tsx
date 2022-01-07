@@ -1,14 +1,9 @@
 import { StackScreenProps } from '@react-navigation/stack';
 import React from 'react';
-import {
-  View,
-  ActivityIndicator,
-  Dimensions,
-  FlatList,
-  Text,
-} from 'react-native';
+import { View, ActivityIndicator, Dimensions } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Carousel from 'react-native-snap-carousel';
+import { HorizontalSlider } from '../components/HorizontalSlider';
 
 import MovieCard from '../components/MovieCard';
 import { useMovies } from '../hooks/useMovies';
@@ -42,20 +37,7 @@ export const HomeScreen = ({ route, navigation }: Props) => {
           itemWidth={300}
         />
       </View>
-      <View style={{ backgroundColor: 'red', height: 260 }}>
-        <Text style={{ fontSize: 30, fontWeight: 'bold' }}>
-          In movietheater
-        </Text>
-        <FlatList
-          data={movies}
-          renderItem={({ item }: any) => (
-            <MovieCard movie={item} height={200} width={140} />
-          )}
-          keyExtractor={item => item.id.toString()}
-          horizontal={true}
-          showsHorizontalScrollIndicator={false}
-        />
-      </View>
+      <HorizontalSlider movies={movies} title={'In cinema'} />
     </View>
   );
 };
