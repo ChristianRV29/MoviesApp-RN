@@ -5,13 +5,15 @@ import { Movie } from '../interfaces/movie';
 
 interface Props {
   movie: Movie;
+  height?: number;
+  width?: number;
 }
 
-const MovieCard = ({ movie }: Props) => {
+const MovieCard = ({ movie, height = 420, width = 300 }: Props) => {
   const posterUri = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
 
   return (
-    <View style={styles.cardContainer}>
+    <View style={{ height, width, marginHorizontal: 8 }}>
       <View style={styles.card}>
         <Image source={{ uri: posterUri }} style={styles.image} />
       </View>
@@ -20,10 +22,6 @@ const MovieCard = ({ movie }: Props) => {
 };
 
 const styles = StyleSheet.create({
-  cardContainer: {
-    width: 300,
-    height: 420,
-  },
   card: {
     borderRadius: 18,
     elevation: 10,
