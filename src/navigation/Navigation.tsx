@@ -3,8 +3,14 @@ import { createStackNavigator } from '@react-navigation/stack';
 
 import { HomeScreen } from './../screens/HomeScreen';
 import DetailScreen from './../screens/DetailScreen';
+import { Movie } from '../interfaces/movie';
 
-const Stack = createStackNavigator();
+export type RooStackParams = {
+  Home: undefined;
+  Details: Movie;
+};
+
+const Stack = createStackNavigator<RooStackParams>();
 
 const { Navigator, Screen } = Stack;
 
@@ -18,7 +24,7 @@ export const Navigation = () => {
         },
       }}>
       <Screen name={'Home'} component={HomeScreen} />
-      <Screen name={'Detail'} component={DetailScreen} />
+      <Screen name={'Details'} component={DetailScreen} />
     </Navigator>
   );
 };
