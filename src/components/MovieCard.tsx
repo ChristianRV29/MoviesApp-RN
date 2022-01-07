@@ -24,7 +24,7 @@ const MovieCard = ({ movie, height = 420, width = 300 }: Props) => {
 const styles = StyleSheet.create({
   card: {
     borderRadius: 18,
-    elevation: 10,
+    elevation: 9,
     flex: 1,
     shadowColor: '#000',
     shadowOffset: {

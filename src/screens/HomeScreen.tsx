@@ -1,14 +1,10 @@
 import { StackScreenProps } from '@react-navigation/stack';
 import React from 'react';
-import {
-  View,
-  ActivityIndicator,
-  Dimensions,
-  FlatList,
-  Text,
-} from 'react-native';
+import { View, ActivityIndicator, Dimensions } from 'react-native';
+import { ScrollView } from 'react-native-gesture-handler';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Carousel from 'react-native-snap-carousel';
+import { HorizontalSlider } from '../components/HorizontalSlider';
 
 import MovieCard from '../components/MovieCard';
 import { useMovies } from '../hooks/useMovies';
@@ -19,7 +15,7 @@ const { width: windowWidth } = Dimensions.get('window');
 interface Props extends StackScreenProps<RooStackParams, 'Home'> {}
 
 export const HomeScreen = ({ route, navigation }: Props) => {
-  const { movies, isLoading } = useMovies();
+  const { movies, popularMovies, isLoading } = useMovies();
 
   const { top } = useSafeAreaInsets();
 
@@ -33,29 +29,20 @@ export const HomeScreen = ({ route, navigation }: Props) => {
   }
 
   return (
-    <View style={{ marginTop: top + 20 }}>
-      <View style={{ height: 440 }}>
-        <Carousel
-          data={movies}
-          renderItem={({ item }: any) => <MovieCard movie={item} />}
-          sliderWidth={windowWidth}
-          itemWidth={300}
-        />
+    <ScrollView>
+      <View style={{ marginTop: top + 20, backgroundColor: 'white' }}>
+        <View style={{ height: 440 }}>
+          <Carousel
+            data={movies}
+            renderItem={({ item }: any) => <MovieCard movie={item} />}
+            sliderWidth={windowWidth}
+            itemWidth={300}
+            inactiveSlideOpacity={0.9}
+          />
+        </View>
+        <HorizontalSlider movies={movies} title={'In cinema'} />
+        <HorizontalSlider movies={popularMovies} title={'Popular movies'} />
       </View>
-      <View style={{ backgroundColor: 'red', height: 260 }}>
-        <Text style={{ fontSize: 30, fontWeight: 'bold' }}>
-          In movietheater
-        </Text>
-        <FlatList
-          data={movies}
-          renderItem={({ item }: any) => (
-            <MovieCard movie={item} height={200} width={140} />
-          )}
-          keyExtractor={item => item.id.toString()}
-          horizontal={true}
-          showsHorizontalScrollIndicator={false}
-        />
-      </View>
-    </View>
+    </ScrollView>
   );
 };
