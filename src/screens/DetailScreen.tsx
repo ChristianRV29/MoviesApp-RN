@@ -1,7 +1,7 @@
 import React from 'react';
 import { StackScreenProps } from '@react-navigation/stack';
 import { View, StyleSheet, Image, Dimensions, Text } from 'react-native';
-import Icon from 'react-native-vector-icons/Ionicons';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
 import { RootStackParams } from './../navigation/Navigation';
 import { ScrollView } from 'react-native-gesture-handler';
@@ -10,6 +10,8 @@ import { Movie } from '../interfaces/movie';
 const screenHeight = Dimensions.get('screen').height;
 
 interface Props extends StackScreenProps<RootStackParams, any> {}
+
+Ionicons.loadFont();
 
 const DetailScreen = ({ route }: Props) => {
   const movie = route.params as Movie;
@@ -27,7 +29,7 @@ const DetailScreen = ({ route }: Props) => {
         <Text style={styles.paragraph}>{movie.title}</Text>
       </View>
       <View style={styles.overviewContainer}>
-        <Icon size={20} name={'star-outline'} color={'black'} />
+        <Ionicons size={20} name={'star-outline'} color={'black'} />
       </View>
     </ScrollView>
   );
