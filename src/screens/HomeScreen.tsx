@@ -15,7 +15,9 @@ const { width: windowWidth } = Dimensions.get('window');
 interface Props extends StackScreenProps<RooStackParams, 'Home'> {}
 
 export const HomeScreen = ({ route, navigation }: Props) => {
-  const { movies, popularMovies, isLoading } = useMovies();
+  const { movies, isLoading } = useMovies();
+
+  const { topRated, popular, incoming, nowPlaying} = movies;
 
   const { top } = useSafeAreaInsets();
 
@@ -33,15 +35,16 @@ export const HomeScreen = ({ route, navigation }: Props) => {
       <View style={{ marginTop: top + 20, backgroundColor: 'white' }}>
         <View style={{ height: 440 }}>
           <Carousel
-            data={movies}
+            data={nowPlaying}
             renderItem={({ item }: any) => <MovieCard movie={item} />}
             sliderWidth={windowWidth}
             itemWidth={300}
             inactiveSlideOpacity={0.9}
           />
         </View>
-        <HorizontalSlider movies={movies} title={'In cinema'} />
-        <HorizontalSlider movies={popularMovies} title={'Popular movies'} />
+        <HorizontalSlider movies={topRated} title={'Top rated'} />
+        <HorizontalSlider movies={popular} title={'Popular movies'} />
+        <HorizontalSlider movies={incoming} title={'Incomming'} />
       </View>
     </ScrollView>
   );
