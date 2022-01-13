@@ -29,6 +29,7 @@ export const HorizontalSlider = (props: HorizontalSlProps) => {
 
 const styles = StyleSheet.create({
   title: {
+    color: 'black',
     marginLeft: 10,
     fontSize: 30,
     fontWeight: 'bold',

@@ -21,14 +21,30 @@ export const useMovies = () => {
 
   const getMovies = async () => {
     const moviesNowPlaing = movieDB.get<MoviesDBInterface>('/now_playing');
-    const moviesPopular = movieDB.get<MoviesDBInterface>('/now_playing');
-    const moviesTopRated = movieDB.get<MoviesDBInterface>('/now_playing');
-    const moviesIncomming = movieDB.get<MoviesDBInterface>('/now_playing');
+    const moviesPopular = movieDB.get<MoviesDBInterface>('/popular');
+    const moviesTopRated = movieDB.get<MoviesDBInterface>('/top_rated');
+    const moviesIncomming = movieDB.get<MoviesDBInterface>('/upcoming');
+
+    const resps = await Promise.all([
+      moviesNowPlaing,
+      moviesPopular,
+      moviesTopRated,
+      moviesIncomming,
+    ]);
+
+    setMovies({
+      nowPlaying: resps[0].data.results,
+      popular: resps[1].data.results,
+      topRated: resps[2].data.results,
+      incoming: resps[3].data.results,
+    });
+
+    setIsLoading(false);
   };
 
   useEffect(() => {
     getMovies();
   }, []);
 
-  return { movies, popularMovies, isLoading };
+  return { movies, isLoading };
 };
