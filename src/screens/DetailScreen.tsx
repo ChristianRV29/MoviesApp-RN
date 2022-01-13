@@ -1,6 +1,7 @@
 import React from 'react';
 import { StackScreenProps } from '@react-navigation/stack';
 import { View, StyleSheet, Image, Dimensions, Text } from 'react-native';
+import Icon from 'react-native-vector-icons/Ionicons';
 
 import { RootStackParams } from './../navigation/Navigation';
 import { ScrollView } from 'react-native-gesture-handler';
@@ -24,6 +25,9 @@ const DetailScreen = ({ route }: Props) => {
       <View style={styles.overviewContainer}>
         <Text style={styles.title}>{movie.title}</Text>
         <Text style={styles.paragraph}>{movie.title}</Text>
+      </View>
+      <View style={styles.overviewContainer}>
+        <Icon size={20} name={'star-outline'} color={'black'} />
       </View>
     </ScrollView>
   );

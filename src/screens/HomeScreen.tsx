@@ -1,4 +1,3 @@
-import { StackScreenProps } from '@react-navigation/stack';
 import React from 'react';
 import { View, ActivityIndicator, Dimensions } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
