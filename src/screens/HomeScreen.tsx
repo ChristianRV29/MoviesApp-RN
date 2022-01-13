@@ -8,16 +8,13 @@ import { HorizontalSlider } from '../components/HorizontalSlider';
 
 import MovieCard from '../components/MovieCard';
 import { useMovies } from '../hooks/useMovies';
-import { RooStackParams } from '../navigation/Navigation';
 
 const { width: windowWidth } = Dimensions.get('window');
 
-interface Props extends StackScreenProps<RooStackParams, 'Home'> {}
-
-export const HomeScreen = ({ route, navigation }: Props) => {
+export const HomeScreen = () => {
   const { movies, isLoading } = useMovies();
 
-  const { topRated, popular, incoming, nowPlaying} = movies;
+  const { topRated, popular, incoming, nowPlaying } = movies;
 
   const { top } = useSafeAreaInsets();
 
