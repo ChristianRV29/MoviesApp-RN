@@ -34,9 +34,9 @@ export const useMovies = () => {
 
     setMovies({
       nowPlaying: resps[0].data.results,
-      popular: resps[0].data.results,
-      topRated: resps[0].data.results,
-      incoming: resps[0].data.results,
+      popular: resps[1].data.results,
+      topRated: resps[2].data.results,
+      incoming: resps[3].data.results,
     });
 
     setIsLoading(false);
