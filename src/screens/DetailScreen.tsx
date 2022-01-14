@@ -25,7 +25,7 @@ const DetailScreen = ({ route }: Props) => {
         </View>
       </View>
       <View style={styles.overviewContainer}>
-        <Text style={styles.title}>{movie.title}</Text>
+        <Text style={styles.title}>{movie.id}</Text>
         <Text style={styles.paragraph}>{movie.title}</Text>
       </View>
       <View style={styles.overviewContainer}>
