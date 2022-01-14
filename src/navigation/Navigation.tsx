@@ -5,12 +5,12 @@ import { HomeScreen } from './../screens/HomeScreen';
 import DetailScreen from './../screens/DetailScreen';
 import { Movie } from '../interfaces/movie';
 
-export type RooStackParams = {
+export type RootStackParams = {
   Home: undefined;
   Details: Movie;
 };
 
-const Stack = createStackNavigator<RooStackParams>();
+const Stack = createStackNavigator<RootStackParams>();
 
 const { Navigator, Screen } = Stack;
 
