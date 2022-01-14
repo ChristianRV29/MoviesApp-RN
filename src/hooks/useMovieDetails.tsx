@@ -24,11 +24,14 @@ export const useMovieDetails = ({ idMovie }: useMovieDetailsProps) => {
   });
 
   const getMovieDetails = async () => {
+
+    console.log(`/${idMovie}/credits`);
+
     const detailsResponse = await movieDB.get<MovieDetailsResponse>(
       `/${idMovie}`,
     );
     const creditsResponse = await movieDB.get<CreditsResponse>(
-      `${idMovie}/credits`,
+      `/${idMovie}/credits`,
     );
 
     const [movieDetailsResponse, castReponse] = await Promise.all([

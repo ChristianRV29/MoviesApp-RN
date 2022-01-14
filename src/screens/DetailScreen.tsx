@@ -6,6 +6,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import { RootStackParams } from './../navigation/Navigation';
 import { ScrollView } from 'react-native-gesture-handler';
 import { useMovieDetails } from '../hooks/useMovieDetails';
+import { Movie } from '../interfaces/movie';
 
 const screenHeight = Dimensions.get('screen').height;
 
@@ -14,10 +15,12 @@ interface Props extends StackScreenProps<RootStackParams, any> {}
 Ionicons.loadFont();
 
 const DetailScreen = ({ route }: Props) => {
-  const movie = route.params;
+  const movie = route.params as Movie;
   const posterUri = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
 
-  const { isLoading } = useMovieDetails(movie!.id);
+  const { movieDetails } = useMovieDetails({ idMovie: movie.id });
+
+  console.log(movieDetails);
 
   return (
     <ScrollView>
