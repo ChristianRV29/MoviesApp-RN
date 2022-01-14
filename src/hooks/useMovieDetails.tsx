@@ -1,11 +1,15 @@
 import { useState, useEffect } from 'react';
 
 import movieDB from './../api/movieDB';
-import { MovieDetailsResponse } from './../interfaces/movieDetails';
+import {
+  MovieDetailsResponse,
+  CreditsResponse,
+  Cast,
+} from './../interfaces/movieDetails';
 interface MovieDetails {
   isLoading: boolean;
-  movieDetails: any;
-  cast: any[];
+  movieDetails?: MovieDetailsResponse;
+  cast: Cast[];
 }
 
 interface useMovieDetailsProps {
@@ -13,15 +17,30 @@ interface useMovieDetailsProps {
 }
 
 export const useMovieDetails = ({ idMovie }: useMovieDetailsProps) => {
-  const [movieDetails, setmovieDetails] = useState<MovieDetails>();
+  const [movieDetails, setMovieDetails] = useState<MovieDetails>({
+    isLoading: true,
+    movieDetails: undefined,
+    cast: [],
+  });
 
   const getMovieDetails = async () => {
-    await movieDB
-      .get<MovieDetailsResponse>(`/${idMovie}`)
-      .then(res => {
-        console.log(res.data.overview);
-      })
-      .catch(err => console.log(err.error || err.message));
+    const detailsResponse = await movieDB.get<MovieDetailsResponse>(
+      `/${idMovie}`,
+    );
+    const creditsResponse = await movieDB.get<CreditsResponse>(
+      `${idMovie}/credits`,
+    );
+
+    const [movieDetailsResponse, castReponse] = await Promise.all([
+      detailsResponse,
+      creditsResponse,
+    ]);
+
+    setMovieDetails({
+      isLoading: false,
+      movieDetails: movieDetailsResponse.data,
+      cast: castReponse.data.cast,
+    });
   };
 
   useEffect(() => {
@@ -29,5 +48,5 @@ export const useMovieDetails = ({ idMovie }: useMovieDetailsProps) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  return { movieDetails, getMovieDetails };
+  return { ...movieDetails, getMovieDetails };
 };
