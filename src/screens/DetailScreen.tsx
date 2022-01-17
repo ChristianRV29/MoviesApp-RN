@@ -14,6 +14,7 @@ import { RootStackParams } from './../navigation/Navigation';
 import { ScrollView } from 'react-native-gesture-handler';
 import { useMovieDetails } from '../hooks/useMovieDetails';
 import { Movie } from '../interfaces/movie';
+import DetailsMovie from '../components/DetailsMovie';
 
 const screenHeight = Dimensions.get('screen').height;
 
@@ -44,7 +45,7 @@ const DetailScreen = ({ route }: Props) => {
         {isLoading ? (
           <ActivityIndicator size={30} color={'gray'} />
         ) : (
-          <Text>Hello world!</Text>
+          <DetailsMovie />
         )}
       </View>
     </ScrollView>
