@@ -1,6 +1,6 @@
 import React from 'react';
 import { StackScreenProps } from '@react-navigation/stack';
-import { View, StyleSheet, Image, Dimensions, Text } from 'react-native';
+import { View, StyleSheet, Image, Dimensions, Text, ActivityIndicator } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 import { RootStackParams } from './../navigation/Navigation';
@@ -34,7 +34,7 @@ const DetailScreen = ({ route }: Props) => {
         <Text style={styles.paragraph}>{movie!.title}</Text>
       </View>
       <View style={styles.overviewContainer}>
-        <Ionicons size={20} name={'star-outline'} color={'black'} />
+        <ActivityIndicator size={35} color={'grey'} style={{ marginTop: 20 }} />
       </View>
     </ScrollView>
   );
