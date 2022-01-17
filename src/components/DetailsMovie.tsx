@@ -1,20 +1,36 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
+import Icon from 'react-native-vector-icons/Ionicons';
 
-const DetailsMovie = () => {
+import { Movie } from '../interfaces/movie';
+import { Cast } from '../interfaces/movieDetails';
+
+interface Props {
+  movieFull: Movie;
+  cast: Cast[];
+}
+
+const DetailsMovie = ({ movieFull, cast }: Props) => {
   return (
-    <View style={styles.mainContainer}>
-      <Text style={styles.text}>Hello world!</Text>
-    </View>
+    <Fragment>
+      <View style={styles.rateContainer}>
+        <Icon name={'star-outline'} color={'gray'} size={16} />
+        <Text style={styles.rateText}>{movieFull.vote_average}</Text>
+      </View>
+    </Fragment>
   );
 };
 
 const styles = StyleSheet.create({
-  mainContainer: {
-    margin: 2,
+  rateContainer: {
+    paddingTop: 10,
+    marginHorizontal: 20,
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
   },
-  text: {
-    color: 'black',
+  rateText: {
+    color: 'gray',
+    paddingHorizontal: 5,
   },
 });
 
