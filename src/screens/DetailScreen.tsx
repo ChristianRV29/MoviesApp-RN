@@ -1,6 +1,13 @@
 import React from 'react';
 import { StackScreenProps } from '@react-navigation/stack';
-import { View, StyleSheet, Image, Dimensions, Text, ActivityIndicator } from 'react-native';
+import {
+  View,
+  StyleSheet,
+  Image,
+  Dimensions,
+  Text,
+  ActivityIndicator,
+} from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 import { RootStackParams } from './../navigation/Navigation';
@@ -18,7 +25,7 @@ const DetailScreen = ({ route }: Props) => {
   const movie = route.params as Movie;
   const posterUri = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
 
-  const { movieDetails } = useMovieDetails({ idMovie: movie.id });
+  const { movieDetails, isLoading } = useMovieDetails({ idMovie: movie.id });
 
   console.log(movieDetails);
 
@@ -34,7 +41,11 @@ const DetailScreen = ({ route }: Props) => {
         <Text style={styles.paragraph}>{movie!.title}</Text>
       </View>
       <View style={styles.overviewContainer}>
-        <ActivityIndicator size={35} color={'grey'} style={{ marginTop: 20 }} />
+        {isLoading ? (
+          <ActivityIndicator size={30} color={'gray'} />
+        ) : (
+          <Text>Hello world!</Text>
+        )}
       </View>
     </ScrollView>
   );
