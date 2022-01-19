@@ -24,9 +24,6 @@ export const useMovieDetails = ({ idMovie }: useMovieDetailsProps) => {
   });
 
   const getMovieDetails = async () => {
-
-    console.log(`/${idMovie}/credits`);
-
     const detailsResponse = await movieDB.get<MovieDetailsResponse>(
       `/${idMovie}`,
     );
