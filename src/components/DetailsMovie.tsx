@@ -27,6 +27,10 @@ const DetailsMovie = ({ movieFull, cast }: Props) => {
             })}
           </Text>
         </View>
+        <View style={styles.overviewContainer}>
+          <Text style={styles.overviewTitle}>Overview</Text>
+          <Text style={styles.overviewText}>{movieFull.overview}</Text>
+        </View>
       </View>
     </Fragment>
   );
@@ -60,6 +64,20 @@ const styles = StyleSheet.create({
     fontSize: 15,
     paddingHorizontal: 5,
     letterSpacing: 1,
+  },
+  overviewContainer: {
+    paddingTop: 10,
+    flexDirection: 'column',
+    justifyContent: 'space-around',
+  },
+  overviewTitle: {
+    fontSize: 18,
+    color: 'black',
+    fontWeight: 'bold',
+  },
+  overviewText: {
+    textAlign: 'justify',
+    color: 'grey',
   },
 });
 
