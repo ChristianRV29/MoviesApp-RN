@@ -39,21 +39,20 @@ const DetailScreen = ({ route }: Props) => {
           <Image source={{ uri: posterUri }} style={styles.image} />
         </View>
       </View>
-      <View style={styles.overviewContainer}>
-        <Text style={styles.title}>{movie!.id}</Text>
-        <Text style={styles.paragraph}>{movie!.title}</Text>
+      <View style={styles.detailsContainer}>
+        {isLoading ? (
+          <ActivityIndicator size={30} color={'gray'} />
+        ) : (
+          <DetailsMovie movieFull={movieDetails!} cast={cast} />
+        )}
       </View>
-      {isLoading ? (
-        <ActivityIndicator size={30} color={'gray'} />
-      ) : (
-        <DetailsMovie movieFull={movie!} cast={cast} />
-      )}
     </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
   imageContainer: {
+    flex: 1,
     width: '100%',
     height: screenHeight * 0.7,
     shadowColor: '#000',
@@ -76,18 +75,8 @@ const styles = StyleSheet.create({
   image: {
     flex: 1,
   },
-  overviewContainer: {
-    marginHorizontal: 20,
-    marginTop: 20,
-  },
-  title: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    color: 'black',
-  },
-  paragraph: {
-    fontSize: 17,
-    color: 'gray',
+  detailsContainer: {
+    flex: 1,
   },
 });
 
