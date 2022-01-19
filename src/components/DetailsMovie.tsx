@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
+import currencyFormatter from 'currency-formatter';
 
 import { Cast, MovieDetailsResponse } from '../interfaces/movieDetails';
 
@@ -30,6 +31,10 @@ const DetailsMovie = ({ movieFull, cast }: Props) => {
         <View style={styles.overviewContainer}>
           <Text style={styles.overviewTitle}>Overview</Text>
           <Text style={styles.overviewText}>{movieFull.overview}</Text>
+          <Text style={styles.overviewTitle}>Budget</Text>
+          <Text style={styles.overviewText}>
+            {currencyFormatter.format(movieFull.budget, { code: 'USD' })}
+          </Text>
         </View>
       </View>
     </Fragment>
@@ -78,6 +83,7 @@ const styles = StyleSheet.create({
   overviewText: {
     textAlign: 'justify',
     color: 'grey',
+    fontSize: 15,
   },
 });
 
