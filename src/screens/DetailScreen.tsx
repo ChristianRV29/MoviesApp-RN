@@ -5,13 +5,12 @@ import {
   StyleSheet,
   Image,
   Dimensions,
-  Text,
   ActivityIndicator,
 } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 import { RootStackParams } from './../navigation/Navigation';
-import { ScrollView } from 'react-native-gesture-handler';
+import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler';
 import { useMovieDetails } from '../hooks/useMovieDetails';
 import { Movie } from '../interfaces/movie';
 import DetailsMovie from '../components/DetailsMovie';
@@ -22,15 +21,13 @@ interface Props extends StackScreenProps<RootStackParams, any> {}
 
 Ionicons.loadFont();
 
-const DetailScreen = ({ route }: Props) => {
+const DetailScreen = ({ route, navigation }: Props) => {
   const movie = route.params as Movie;
   const posterUri = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
 
   const { movieDetails, isLoading, cast } = useMovieDetails({
     idMovie: movie.id,
   });
-
-  console.log(movieDetails);
 
   return (
     <ScrollView>
@@ -45,6 +42,15 @@ const DetailScreen = ({ route }: Props) => {
         ) : (
           <DetailsMovie movieFull={movieDetails!} cast={cast} />
         )}
+      </View>
+      <View style={styles.backButton}>
+        <TouchableOpacity onPress={() => navigation.pop()}>
+          <Ionicons
+            color={'white'}
+            size={30}
+            name={'chevron-back-circle-outline'}
+          />
+        </TouchableOpacity>
       </View>
     </ScrollView>
   );
@@ -77,6 +83,12 @@ const styles = StyleSheet.create({
   },
   detailsContainer: {
     flex: 1,
+  },
+  backButton: {
+    position: 'absolute',
+    zIndex: 9,
+    top: 20,
+    left: 10,
   },
 });
 

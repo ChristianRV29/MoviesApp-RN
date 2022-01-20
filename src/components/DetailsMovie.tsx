@@ -4,6 +4,8 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import currencyFormatter from 'currency-formatter';
 
 import { Cast, MovieDetailsResponse } from '../interfaces/movieDetails';
+import ActorCard from './ActorCard';
+import { FlatList } from 'react-native-gesture-handler';
 
 interface Props {
   movieFull: MovieDetailsResponse;
@@ -35,6 +37,13 @@ const DetailsMovie = ({ movieFull, cast }: Props) => {
           <Text style={styles.overviewText}>
             {currencyFormatter.format(movieFull.budget, { code: 'USD' })}
           </Text>
+          <Text style={styles.overviewTitle}>Actors</Text>
+          <FlatList
+            data={cast}
+            keyExtractor={item => item.id.toString()}
+            renderItem={({ item }) => <ActorCard actorInfo={item} />}
+            horizontal={true}
+          />
         </View>
       </View>
     </Fragment>
@@ -88,10 +97,3 @@ const styles = StyleSheet.create({
 });
 
 export default DetailsMovie;
-
-{
-  /* <View style={styles.rateContainer}>
-  <Icon name={'star-outline'} color={'gray'} size={16} />
-  <Text style={styles.rateText}>{movieFull.vote_average}</Text>
-</View> */
-}
