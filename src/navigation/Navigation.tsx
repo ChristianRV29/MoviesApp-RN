@@ -19,9 +19,6 @@ export const Navigation = () => {
     <Navigator
       screenOptions={{
         headerShown: false,
-        cardStyle: {
-          backgroundColor: 'white',
-        },
       }}>
       <Screen name={'Home'} component={HomeScreen} />
       <Screen name={'Details'} component={DetailScreen} />

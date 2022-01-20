@@ -22,7 +22,7 @@ const ActorCard = ({ actorInfo }: Props) => {
 
 const styles = StyleSheet.create({
   cardContainer: {
-    marginVertical: 2,
+    paddingRight: 15,
     flexDirection: 'row',
     backgroundColor: 'white',
     borderRadius: 10,
@@ -34,6 +34,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.24,
     shadowRadius: 7,
     elevation: 9,
+    marginRight: 18,
   },
   actorImage: {
     width: 50,
@@ -41,7 +42,6 @@ const styles = StyleSheet.create({
     borderRadius: 10,
   },
   infoContainer: {
-    flex: 1,
     justifyContent: 'flex-start',
     marginLeft: 10,
   },
@@ -49,6 +49,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: 'bold',
     color: 'black',
+    paddingTop: 4,
   },
   textCharacter: {
     fontSize: 16,
