@@ -91,10 +91,3 @@ const styles = StyleSheet.create({
 });
 
 export default DetailsMovie;
-
-{
-  /* <View style={styles.rateContainer}>
-  <Icon name={'star-outline'} color={'gray'} size={16} />
-  <Text style={styles.rateText}>{movieFull.vote_average}</Text>
-</View> */
-}
