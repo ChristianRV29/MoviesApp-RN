@@ -4,6 +4,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import currencyFormatter from 'currency-formatter';
 
 import { Cast, MovieDetailsResponse } from '../interfaces/movieDetails';
+import ActorCard from './ActorCard';
 
 interface Props {
   movieFull: MovieDetailsResponse;
@@ -35,6 +36,8 @@ const DetailsMovie = ({ movieFull, cast }: Props) => {
           <Text style={styles.overviewText}>
             {currencyFormatter.format(movieFull.budget, { code: 'USD' })}
           </Text>
+          <Text style={styles.overviewTitle}>Actors</Text>
+          <ActorCard actorInfo={cast[0]} />
         </View>
       </View>
     </Fragment>

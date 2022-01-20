@@ -30,8 +30,6 @@ const DetailScreen = ({ route }: Props) => {
     idMovie: movie.id,
   });
 
-  console.log(movieDetails);
-
   return (
     <ScrollView>
       <View style={styles.imageContainer}>
