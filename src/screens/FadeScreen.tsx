@@ -1,18 +1,12 @@
 import React from 'react';
-import { Animated, Button, View } from 'react-native';
+import { Animated, Button, StyleSheet, View } from 'react-native';
 import { useFade } from '../hooks/useFade';
 
 const FadeScreen = () => {
-  const { opacity, fadeIn, fadeOut } = useFade(0.5);
+  const { opacity, fadeIn, fadeOut } = useFade(0);
 
   return (
-    <View
-      style={{
-        flex: 1,
-        backgroundColor: 'grey',
-        justifyContent: 'center',
-        alignItems: 'center',
-      }}>
+    <View style={styles.container}>
       <Animated.View
         style={{
           width: 250,
@@ -28,5 +22,14 @@ const FadeScreen = () => {
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: 'grey',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+});
 
 export default FadeScreen;
