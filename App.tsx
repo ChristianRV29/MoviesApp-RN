@@ -4,11 +4,14 @@ import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 
 import { Navigation } from './src/navigation/Navigation';
+import { GradientContextProvider } from './src/context/gradient';
 
 const App = () => {
   return (
     <NavigationContainer>
-      <Navigation />
+      <GradientContextProvider>
+        <Navigation />
+      </GradientContextProvider>
     </NavigationContainer>
   );
 };
