@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { View, ActivityIndicator, Dimensions } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -21,6 +21,13 @@ export const HomeScreen = () => {
   const { top } = useSafeAreaInsets();
 
   const { setMainColors } = useContext(GradientContext);
+
+  useEffect(() => {
+    if (nowPlaying.length > 0) {
+      getPosterColors(0);
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [nowPlaying]);
 
   const getPosterColors = async (index: number) => {
     const movie = nowPlaying[index];
